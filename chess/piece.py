@@ -5,7 +5,7 @@ from typing import Tuple
 import pygame
 
 # Custom imports
-from .constants import SQUARE_SIZE
+from .constants import BLACK_CANNON, BLACK_ELEPHANT, BLACK_GUARD, BLACK_HORSE, BLACK_KING, BLACK_ROOK, BLACK_SOLDIER, RED_CANNON, RED_ELEPHANT, RED_GUARD, RED_HORSE, RED_KING, RED_ROOK, RED_SOLDIER, SQUARE_SIZE
 
 
 class Piece:
@@ -14,10 +14,10 @@ class Piece:
         self.col = col
         self.color = color
         self.x, self. y = self.get_pos()
-        self.image = pygame.image.load(self.get_image_path())
+        self.image = self.get_loaded_image()
 
     # Abstract method: Get pieces image path
-    def get_image_path(self) -> None:
+    def get_loaded_image(self) -> pygame.Surface:
         raise NotImplementedError
 
     # Get (x,y) position based on (row,col)
@@ -33,53 +33,53 @@ class King(Piece):
     def __init__(self, row: int, col: int, color: str) -> None:
         super().__init__(row, col, color)
 
-    def get_image_path(self) -> str:
-        return "chess/images/r-k.png" if self.color == "r" else "chess/images/b-k.png"
+    def get_loaded_image(self) -> pygame.Surface:
+        return RED_KING if self.color == "r" else BLACK_KING
 
 
 class Rook(Piece):
     def __init__(self, row: int, col: int, color: str) -> None:
         super().__init__(row, col, color)
 
-    def get_image_path(self) -> str:
-        return "chess/images/r-r.png" if self.color == "r" else "chess/images/b-r.png"
+    def get_loaded_image(self) -> pygame.Surface:
+        return RED_ROOK if self.color == "r" else BLACK_ROOK
 
 
 class Horse(Piece):
     def __init__(self, row: int, col: int, color: str) -> None:
         super().__init__(row, col, color)
 
-    def get_image_path(self) -> str:
-        return "chess/images/r-h.png" if self.color == "r" else "chess/images/b-h.png"
+    def get_loaded_image(self) -> pygame.Surface:
+        return RED_HORSE if self.color == "r" else BLACK_HORSE
 
 
 class Cannon(Piece):
     def __init__(self, row: int, col: int, color: str) -> None:
         super().__init__(row, col, color)
 
-    def get_image_path(self) -> str:
-        return "chess/images/r-c.png" if self.color == "r" else "chess/images/b-c.png"
+    def get_loaded_image(self) -> pygame.Surface:
+        return RED_CANNON if self.color == "r" else BLACK_CANNON
 
 
 class Guard(Piece):
     def __init__(self, row: int, col: int, color: str) -> None:
         super().__init__(row, col, color)
 
-    def get_image_path(self) -> str:
-        return "chess/images/r-g.png" if self.color == "r" else "chess/images/b-g.png"
+    def get_loaded_image(self) -> pygame.Surface:
+        return RED_GUARD if self.color == "r" else BLACK_GUARD
 
 
 class Elephant(Piece):
     def __init__(self, row: int, col: int, color: str) -> None:
         super().__init__(row, col, color)
 
-    def get_image_path(self) -> str:
-        return "chess/images/r-e.png" if self.color == "r" else "chess/images/b-e.png"
+    def get_loaded_image(self) -> pygame.Surface:
+        return RED_ELEPHANT if self.color == "r" else BLACK_ELEPHANT
 
 
 class Soldier(Piece):
     def __init__(self, row: int, col: int, color: str) -> None:
         super().__init__(row, col, color)
 
-    def get_image_path(self) -> str:
-        return "chess/images/r-s.png" if self.color == "r" else "chess/images/b-s.png"
+    def get_loaded_image(self) -> pygame.Surface:
+        return RED_SOLDIER if self.color == "r" else BLACK_SOLDIER
