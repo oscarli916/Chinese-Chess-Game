@@ -5,7 +5,7 @@ from typing import Tuple
 import pygame
 
 # Custom imports
-from .constants import BLACK_CANNON, BLACK_ELEPHANT, BLACK_GUARD, BLACK_HORSE, BLACK_KING, BLACK_ROOK, BLACK_SOLDIER, RED_CANNON, RED_ELEPHANT, RED_GUARD, RED_HORSE, RED_KING, RED_ROOK, RED_SOLDIER, SQUARE_SIZE
+from .constants import BLACK_CANNON, BLACK_ELEPHANT, BLACK_GUARD, BLACK_HORSE, BLACK_KING, BLACK_ROOK, BLACK_SOLDIER, EMPTY, RED, RED_CANNON, RED_ELEPHANT, RED_GUARD, RED_HORSE, RED_KING, RED_ROOK, RED_SOLDIER, SQUARE_SIZE
 
 
 class Piece:
@@ -22,11 +22,17 @@ class Piece:
 
     # Get (x,y) position based on (row,col)
     def get_pos(self) -> Tuple[int, int]:
-        return self.col * SQUARE_SIZE + 20, self.row * SQUARE_SIZE + 20
+        return self.col * SQUARE_SIZE + 17, self.row * SQUARE_SIZE + 17
 
     # Draw the image on the board
     def draw(self, win: pygame.Surface) -> None:
         win.blit(self.image, (self.x, self.y))
+
+    # Change row, col and (x,y) position
+    def move(self, row: int, col: int) -> None:
+        self.row = row
+        self.col = col
+        self.x, self.y = self.get_pos()
 
 
 class King(Piece):
@@ -34,7 +40,7 @@ class King(Piece):
         super().__init__(row, col, color)
 
     def get_loaded_image(self) -> pygame.Surface:
-        return RED_KING if self.color == "r" else BLACK_KING
+        return RED_KING if self.color == RED else BLACK_KING
 
 
 class Rook(Piece):
@@ -42,7 +48,7 @@ class Rook(Piece):
         super().__init__(row, col, color)
 
     def get_loaded_image(self) -> pygame.Surface:
-        return RED_ROOK if self.color == "r" else BLACK_ROOK
+        return RED_ROOK if self.color == RED else BLACK_ROOK
 
 
 class Horse(Piece):
@@ -50,7 +56,7 @@ class Horse(Piece):
         super().__init__(row, col, color)
 
     def get_loaded_image(self) -> pygame.Surface:
-        return RED_HORSE if self.color == "r" else BLACK_HORSE
+        return RED_HORSE if self.color == RED else BLACK_HORSE
 
 
 class Cannon(Piece):
@@ -58,7 +64,7 @@ class Cannon(Piece):
         super().__init__(row, col, color)
 
     def get_loaded_image(self) -> pygame.Surface:
-        return RED_CANNON if self.color == "r" else BLACK_CANNON
+        return RED_CANNON if self.color == RED else BLACK_CANNON
 
 
 class Guard(Piece):
@@ -66,7 +72,7 @@ class Guard(Piece):
         super().__init__(row, col, color)
 
     def get_loaded_image(self) -> pygame.Surface:
-        return RED_GUARD if self.color == "r" else BLACK_GUARD
+        return RED_GUARD if self.color == RED else BLACK_GUARD
 
 
 class Elephant(Piece):
@@ -74,7 +80,7 @@ class Elephant(Piece):
         super().__init__(row, col, color)
 
     def get_loaded_image(self) -> pygame.Surface:
-        return RED_ELEPHANT if self.color == "r" else BLACK_ELEPHANT
+        return RED_ELEPHANT if self.color == RED else BLACK_ELEPHANT
 
 
 class Soldier(Piece):
@@ -82,4 +88,12 @@ class Soldier(Piece):
         super().__init__(row, col, color)
 
     def get_loaded_image(self) -> pygame.Surface:
-        return RED_SOLDIER if self.color == "r" else BLACK_SOLDIER
+        return RED_SOLDIER if self.color == RED else BLACK_SOLDIER
+
+
+class Empty(Piece):
+    def __init__(self, row: int, col: int, color: str) -> None:
+        super().__init__(row, col, color)
+
+    def get_loaded_image(self) -> pygame.Surface:
+        return EMPTY

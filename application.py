@@ -1,9 +1,12 @@
+# Python built-in libraries
+from typing import Tuple
+
 # 3rd-party libraries
 import pygame
 
 # Custom imports
-from chess.board import Board
-from chess.constants import WIDTH, HEIGHT
+from chess.constants import HEIGHT, SQUARE_SIZE, WIDTH
+from chess.game import Game
 
 
 # Constants
@@ -13,10 +16,15 @@ WIN = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Chinese Chess")
 
 
+def get_row_col_from_mouse(pos: Tuple[int, int]):
+    x, y = pos
+    return y // SQUARE_SIZE, x // SQUARE_SIZE
+
+
 def main() -> None:
     run = True
     clock = pygame.time.Clock()
-    board = Board()
+    game = Game(WIN)
 
     while run:
         clock.tick(FPS)
@@ -26,10 +34,10 @@ def main() -> None:
                 run = False
 
             if event.type == pygame.MOUSEBUTTONDOWN:
-                pass
+                row, col = get_row_col_from_mouse(pygame.mouse.get_pos())
+                game.select(row, col)
 
-        board.draw(WIN)
-        pygame.display.update()
+        game.update()
 
     pygame.quit()
 
