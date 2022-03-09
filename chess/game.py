@@ -49,7 +49,7 @@ class Game:
     def _move(self, row: int, col: int) -> bool:
         # Target piece(piece that want to move to)
         piece = self.board.get_piece(row, col)
-        if self.selected:
+        if self.selected and (row, col) in self.valid_moves:
             if isinstance(piece, (King, Rook, Horse, Cannon, Guard, Elephant, Soldier)) and piece.color != self.turn:
                 self.board.remove(piece)
                 self.board.move(self.selected, row, col)
@@ -59,8 +59,8 @@ class Game:
                 self.change_turn()
             else:
                 return False
-        # else:
-        #     return False
+        else:
+            return False
 
         return True
 
