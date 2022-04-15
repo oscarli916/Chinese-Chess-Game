@@ -39,6 +39,9 @@ def main() -> None:
 
         game.update()
 
+        if game.board.black_kings == 0 or game.board.red_kings == 0:
+            run = False
+
     pygame.quit()
 
 

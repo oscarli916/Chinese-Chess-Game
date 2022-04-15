@@ -87,4 +87,4 @@ class Board:
             else:
                 self.black_kings = 0
         self.board[piece.row][piece.col] = Empty(
-            piece.row, piece.col, piece.color)
+            piece.row, piece.col, WHITE)
