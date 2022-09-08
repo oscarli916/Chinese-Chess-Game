@@ -14,7 +14,7 @@ class Piece:
         self.col = col
         self.color = color
         self.x, self. y = self.get_pos()
-        self.image = self.get_loaded_image()
+        # self.image = self.get_loaded_image()
 
     # Abstract method: Get pieces image path
     def get_loaded_image(self) -> pygame.Surface:
@@ -30,7 +30,7 @@ class Piece:
 
     # Draw the image on the board
     def draw(self, win: pygame.Surface) -> None:
-        win.blit(self.image, (self.x, self.y))
+        win.blit(self.get_loaded_image(), (self.x, self.y))
 
     # Change row, col and (x,y) position
     def move(self, row: int, col: int) -> None:
