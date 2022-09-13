@@ -25,7 +25,7 @@ class Board:
         # Cols line
         for col in range(COLS):
             pygame.draw.line(win, BLACK, (col * SQUARE_SIZE + OFFSET, OFFSET),
-                             (col * SQUARE_SIZE + OFFSET, HEIGHT - OFFSET), 2)
+                             (col * SQUARE_SIZE + OFFSET, OFFSET + SQUARE_SIZE * (ROWS - 1)), 2)
         # Cross line
         pygame.draw.line(win, BLACK, (260, 50), (400, 190), 2)
         pygame.draw.line(win, BLACK, (400, 50), (260, 190), 2)
