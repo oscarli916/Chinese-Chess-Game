@@ -21,20 +21,20 @@ class Board:
         # Rows line
         for row in range(ROWS):
             pygame.draw.line(win, BLACK, (OFFSET, row * SQUARE_SIZE + OFFSET),
-                             (WIDTH - OFFSET, row * SQUARE_SIZE + OFFSET), 2)
+                             (OFFSET + SQUARE_SIZE * (COLS - 1), row * SQUARE_SIZE + OFFSET), 2)
         # Cols line
         for col in range(COLS):
             pygame.draw.line(win, BLACK, (col * SQUARE_SIZE + OFFSET, OFFSET),
                              (col * SQUARE_SIZE + OFFSET, HEIGHT - OFFSET), 2)
         # Cross line
-        pygame.draw.line(win, BLACK, (350, 50), (550, 250), 2)
-        pygame.draw.line(win, BLACK, (550, 50), (350, 250), 2)
-        pygame.draw.line(win, BLACK, (350, 750), (550, 950), 2)
-        pygame.draw.line(win, BLACK, (550, 750), (350, 950), 2)
+        pygame.draw.line(win, BLACK, (260, 50), (400, 190), 2)
+        pygame.draw.line(win, BLACK, (400, 50), (260, 190), 2)
+        pygame.draw.line(win, BLACK, (260, 680), (400, 540), 2)
+        pygame.draw.line(win, BLACK, (400, 680), (260, 540), 2)
         # Remove middle line
         for col in range(1, COLS - 1):
-            pygame.draw.line(win, YELLOW_ORANGE, (col * SQUARE_SIZE + OFFSET, 450),
-                             (col * SQUARE_SIZE + OFFSET, 450 + SQUARE_SIZE), 2)
+            pygame.draw.line(win, YELLOW_ORANGE, (col * SQUARE_SIZE + OFFSET, 330),
+                             (col * SQUARE_SIZE + OFFSET, 330 + SQUARE_SIZE), 2)
 
     # Add Pieces to the board
     def create_board(self) -> None:
