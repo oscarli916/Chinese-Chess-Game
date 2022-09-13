@@ -21,7 +21,7 @@ pygame.display.set_caption("Chinese Chess")
 
 def get_row_col_from_mouse(pos: Tuple[int, int]):
     x, y = pos
-    return y // SQUARE_SIZE, x // SQUARE_SIZE
+    return min(y // SQUARE_SIZE, 9), min(x // SQUARE_SIZE, 8)
 
 
 def send(socket: socket.socket, data: dict) -> dict:
