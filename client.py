@@ -26,8 +26,14 @@ def get_row_col_from_mouse(pos: Tuple[int, int]):
 
 def send(socket: socket.socket, data: dict) -> dict:
     socket.sendall(pickle.dumps(data))
-    data = socket.recv(8192)
-    return pickle.loads(data)
+    total_data = []
+    while True:
+        data = socket.recv(8192)
+        total_data.append(data)
+        if len(b"".join(total_data)) > 3000:
+            break
+
+    return pickle.loads(b"".join(total_data))
 
 
 def main():
