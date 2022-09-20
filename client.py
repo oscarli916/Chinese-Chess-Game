@@ -1,19 +1,17 @@
 # Python built-in libraries
-import os
 import pickle
 import socket
 from typing import Tuple
 
 # 3rd-party libraries
-from dotenv import load_dotenv
 import pygame
 
 # Custom imports
 from chess.constants import HEIGHT, SQUARE_SIZE, WIDTH
 from chess.server_game import ServerGame
 
-load_dotenv()
-
+HOST = "34.203.189.200"
+PORT = 65432
 FPS = 60
 WIN = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Chinese Chess")
@@ -38,7 +36,7 @@ def send(socket: socket.socket, data: dict) -> dict:
 
 def main():
     with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-        s.connect((os.getenv("HOST"), int(os.getenv("PORT"))))
+        s.connect((HOST, PORT))
         data = s.recv(8192)
         data = pickle.loads(data)
         player_color, game = data["player_color"], data["game"]
